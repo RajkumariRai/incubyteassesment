@@ -6,7 +6,7 @@ const StringCalculator: React.FC = () => {
   const [result, setResult] = useState<number | null>(null);
   const [error, setError] = useState<string | null>(null);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
     setInput(e.target.value);
   };
 
@@ -16,26 +16,27 @@ const StringCalculator: React.FC = () => {
       setResult(sum);
       setError(null);
     } catch (err: unknown) {
-        if (err instanceof Error) {
-          setResult(null);
-          setError(err.message);
-        } else {
-          setResult(null);
-          setError("An unknown error occurred");
-        }
+      if (err instanceof Error) {
+        setResult(null);
+        setError(err.message);
+      } else {
+        setResult(null);
+        setError("An unknown error occurred");
       }
-      
+    }
   };
 
   return (
     <div>
       <h1>String Calculator</h1>
-      <input
-        type="text"
+      <textarea
         value={input}
         onChange={handleInputChange}
-        placeholder="Enter numbers"
+        placeholder="Enter numbers separated by commas or new lines"
+        rows={10}
+        cols={30}
       />
+      <br />
       <button onClick={handleCalculate}>Calculate</button>
       {result !== null && <p>Result: {result}</p>}
       {error && <p style={{ color: 'red' }}>{error}</p>}
