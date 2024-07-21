@@ -5,14 +5,14 @@ export function add(numbers: string): number {
       return 0;
     }
   // check for next line or comma
-    let delimiter = /,|\n/;
-    if (numbers.startsWith("//")) {
-      const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
-      if (delimiterMatch) {
-        delimiter = new RegExp(delimiterMatch[1]);
-        numbers = numbers.substring(delimiterMatch[0].length);
-      }
+  let delimiter = /,|\n/;
+  if (numbers.startsWith("//")) {
+    const delimiterMatch = numbers.match(/^\/\/(.+)\n/);
+    if (delimiterMatch) {
+      delimiter = new RegExp(delimiterMatch[1]);
+      numbers = numbers.substring(delimiterMatch[0].length);
     }
+  }
   // iterate through numbers
     const numArray = numbers.split(delimiter).map(Number);
     const negatives = numArray.filter(n => n < 0);

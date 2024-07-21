@@ -23,9 +23,10 @@ describe('String Calculator', () => {
   });
 
   it('should support custom delimiters', () => {
-    expect(add("//;\n1;2")).toBe(3);
-    expect(add("//|\n5|4|3")).toBe(12);
+    expect(add("//;\n1;2")).toBe(3);  // Custom delimiter is ;
+    expect(add("//|\n5|4|3")).toBe(12);  // Custom delimiter is |
   });
+  
 
   it('should throw an error if negative numbers are used', () => {
     expect(() => add("1,-2,3")).toThrow('negative numbers not allowed: -2');
